@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="welcome" class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="{% static 'img/me.png' %}" alt="?" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h1 class="text-center">Привет, я Антон!</h1>
+                <br>
+                <p> Начинающий, но перспективный и амбициозный бекенд-разработчик. Мой интерес к программированию и желание создавать функциональные веб-приложения вдохновили меня на изучение Django.</p>
+                <p> Несмотря на отсутствие опыта работы, я занимался самообучением и активно разрабатываю собственные проекты для практики. Я целеустремлен и готов учиться, стремясь стать квалифицированным специалистом в области бекенд-разработки.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container my-5 py-5 text-dark">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+                <h4 class="text-dark mb-0 text-center">Есть что сказать? Пиши ниже {{ count }}</h4>
+                <br>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="author" class="form-control mb-3" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        {{ form.author.errors }}
+                        <textarea name="content" class="form-control mb-3" placeholder="Add comment" rows="2" required></textarea>
+                        {{ form.content.errors }}
+                        {{ form.captcha }}
+                        {{ form.captcha.errors }}
+                        <br>
+                        <button class="btn btn-dark btn-block " type="submit">Отправить</button>
+                    </div>
+                </form>
+
+                {% for item in page_obj %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex flex-start">
+                            <div class="w-100">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="text-primary fw-bold mb-0"> <b class="author-name">{{ item.author }}</b></h6>
+                                    <p class="mb-0">   {{ item.created_at|timesince }} назад</p>
+                                </div>
+                                <p class="text-dark">{{ item.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% if page_obj.paginator.num_pages > 1 %}
+                    {% include 'inc/_pagination.html' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
