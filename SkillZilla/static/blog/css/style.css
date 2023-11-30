@@ -44,4 +44,11 @@ textarea {
 }
 
 
+.navbar-nav .nav-item.active .nav-link {
+    color: black;
+}
+
+
+
+
 
