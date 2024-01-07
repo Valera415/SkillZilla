@@ -48,7 +48,4 @@ def details(request, slug):
 class ProjectDetailView(DetailView):
     model = Project
     context_object_name = 'project'
-
-    def get_template_names(self):
-        project = self.get_object()
-        return [f'blog/projects/{project.template_name}.html']
+    template_name = 'blog/detailProject'
