@@ -1,0 +1,47 @@
+#footer {
+  height: 5%;
+}
+
+.logo-img {
+    height: 30px;
+}
+
+.logo-link {
+    margin-left: 15px;
+}
+
+textarea {
+  resize: none;
+}
+
+
+.pagination .page-link {
+    color: black;
+    background-color: white;
+    border-color: black;
+}
+
+.pagination .page-link:hover {
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+.pagination .page-item.active .page-link {
+    z-index: 3;
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+.pagination .page-link:focus {
+    box-shadow: none;
+}
+
+.author-name{
+    color: black;
+
+}
+
+
+
